@@ -149,7 +149,7 @@ def show_results(model,history,test_set):
     
     plt.close()
 
-    plt.subplots(figsize=(10, 8))
+    plt.subplots(figsize=(12, 10))
     # Display a heatmap of the confusion matrix
     plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
@@ -194,4 +194,5 @@ reg_strength = st.slider('Select a value:', 0.00, 0.50, 0.05, step=0.01)
 
 
 if st.button('Run predictions'):
-    initiate_cnn(number_of_epochs,number_of_filters,dropout_rate,reg_strength)
+    with st.spinner("Running predictions..."):
+        initiate_cnn(number_of_epochs,number_of_filters,dropout_rate,reg_strength)
