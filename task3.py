@@ -48,7 +48,7 @@ def perform_eda(dataset_path):
     st.pyplot(plt)
     plt.close()
 
-def initiate_cnn(epochs=25,filters=26,dropout=0.3,reg_strength=0.05):
+def initiate_cnn(epochs=5,filters=26,dropout=0.3,reg_strength=0.05):
     NUM_CLASSES = 5
 
     # Create a sequential model with a list of layers
@@ -181,7 +181,7 @@ st.header("EDA:")
 perform_eda("./resources/train/")
 
 st.header('Select the amount of epochs!')
-number_of_epochs = st.slider('Select a value:', 5, 40, 25, step=1)
+number_of_epochs = st.slider('Select a value:', 5, 10, 5, step=1)
 
 st.header('Select the number of filters you want to use in the cnn!')
 number_of_filters = st.slider('Select a value:', 15, 50, 26, step=1)
