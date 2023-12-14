@@ -157,7 +157,7 @@ def show_results(model,history,test_set):
     plt.xticks(tick_marks, class_names, rotation=45)
     plt.yticks(tick_marks, class_names)
     
-    st.pyplot(fig)
+    # st.pyplot(fig) seaborn if broke
     
     # Print classification report
     st.text("Classification Report:")
