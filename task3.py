@@ -103,7 +103,7 @@ def train_network(model,amnt_epochs=25):
 
 def show_results(model,history,test_set):
     # Create a figure and a grid of subplots with a single call
-    (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
 
     # Plot the loss curves on the first subplot
     ax1.plot(history.history['loss'], label='training loss')
@@ -157,7 +157,7 @@ def show_results(model,history,test_set):
     plt.xticks(tick_marks, class_names, rotation=45)
     plt.yticks(tick_marks, class_names)
     
-    # seaborn if broke
+    #seaborn if broke
     st.pyplot(plt) 
     
     # Print classification report
