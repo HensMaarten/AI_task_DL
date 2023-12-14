@@ -147,7 +147,7 @@ def show_results(model,history,test_set):
     
     # Display a heatmap of the confusion matrix
     fig_conf_matrix = plt.figure(figsize=(8, 6))
-    sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
+    ax_conf_matrix = sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names, cbar_kws={'label': 'Count'})
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
