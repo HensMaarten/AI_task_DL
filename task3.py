@@ -145,6 +145,8 @@ def show_results(model,history,test_set):
     st.title("Confusion Matrix:")
     st.text(conf_matrix)
     
+    plt.close()
+
     # Display a heatmap of the confusion matrix
     conf_matr = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
@@ -157,8 +159,10 @@ def show_results(model,history,test_set):
     plt.xticks(tick_marks, class_names, rotation=45)
     plt.yticks(tick_marks, class_names)
     
-    #seaborn if broke
-    st.pyplot(conf_matr) 
+    conf_matrix_filename = "confusion_matrix.png"
+    plt.savefig(conf_matrix_filename)
+
+    st.image(conf_matrix_filename)
     
     # Print classification report
     st.text("Classification Report:")
