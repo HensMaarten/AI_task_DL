@@ -46,7 +46,7 @@ def perform_eda(dataset_path):
     plt.ylabel('Number of Images')
     st.pyplot(plt)
 
-def initiate_cnn(filters=26,dropout=0.3,reg_strength=0.05):
+def initiate_cnn(epochs=25,filters=26,dropout=0.3,reg_strength=0.05):
     NUM_CLASSES = 5
 
     # Create a sequential model with a list of layers
@@ -66,7 +66,7 @@ def initiate_cnn(filters=26,dropout=0.3,reg_strength=0.05):
     model.compile(optimizer = optimizers.Adam(learning_rate=0.001), 
                   loss = 'categorical_crossentropy', 
                   metrics = ['accuracy'])
-    train_network(model)
+    train_network(model,epochs)
 
 
     
@@ -143,10 +143,10 @@ def show_results(model,history,test_set):
     
     # Display the confusion matrix with class names
     st.title("Confusion Matrix:")
-    st.title(conf_matrix)
+    st.text(conf_matrix)
     
     # Display a heatmap of the confusion matrix
-    plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    conf_matr = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
@@ -158,11 +158,11 @@ def show_results(model,history,test_set):
     plt.yticks(tick_marks, class_names)
     
     #seaborn if broke
-    st.pyplot(plt) 
+    st.pyplot(conf_matr) 
     
     # Print classification report
     st.text("Classification Report:")
-    st.text("classification_report(true_labels, predicted_labels, target_names=class_names")
+    st.text(classification_report(true_labels, predicted_labels, target_names=class_names))
 
 
 
@@ -172,6 +172,9 @@ st.text("Training a neural network to detect different kinds of food")
 
 st.header("EDA:")
 perform_eda("./resources/train/")
+
+st.header('Select the amount of epochs!')
+number_of_epochs = st.slider('Select a value:', 5, 40, 25, step=1)
 
 st.header('Select the number of filters you want to use in the cnn!')
 number_of_filters = st.slider('Select a value:', 15, 50, 26, step=1)
@@ -184,4 +187,4 @@ reg_strength = st.slider('Select a value:', 0.00, 0.50, 0.05, step=0.01)
 
 
 if st.button('Run predictions'):
-    initiate_cnn(number_of_filters,dropout_rate,reg_strength)
+    initiate_cnn(number_of_epochs,number_of_filters,dropout_rate,reg_strength)
