@@ -22,7 +22,7 @@ def display_images(class_path, num_images=3):
         img = Image.open(img_path)
         plt.subplot(1, num_images, i)
         plt.imshow(img)
-        plt.title(f"Image {i} of {class_path[8:]}")
+        plt.title(f"Image {i} of {class_path[18:]}")
         plt.axis('off')
     st.pyplot(plt)
     plt.close()
@@ -149,6 +149,7 @@ def show_results(model,history,test_set):
     
     plt.close()
 
+    plt.subplots(figsize=(8, 6))
     # Display a heatmap of the confusion matrix
     plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
