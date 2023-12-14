@@ -184,7 +184,7 @@ st.header('Select the amount of epochs!')
 number_of_epochs = st.slider('Select a value:', 5, 10, 5, step=1)
 
 st.header('Select the number of filters you want to use in the cnn!')
-number_of_filters = st.slider('Select a value:', 15, 50, 26, step=1)
+number_of_filters = st.slider('Select a value:', 15, 30, 26, step=1)
 
 st.header('Select the dropout rate you want to use in the cnn!')
 dropout_rate = st.slider('Select a value:', 0.1, 0.9, 0.3, step=0.1)
