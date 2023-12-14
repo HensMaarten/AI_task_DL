@@ -20,11 +20,11 @@ def display_images(class_path, num_images=3):
     for i, img_name in enumerate(images, start=1):
         img_path = os.path.join(class_path, img_name)
         img = Image.open(img_path)
-        plt.subplot(1, num_images, i)
+        fig = plt.subplot(1, num_images, i)
         plt.imshow(img)
         plt.title(f"Image {i} of {class_path[8:]}")
         plt.axis('off')
-    st.pyplot()
+    st.pyplot(fig)
 
 # Function to perform EDA on the dataset
 def perform_eda(dataset_path):
@@ -39,12 +39,12 @@ def perform_eda(dataset_path):
 
 
     # Visualize class distribution
-    plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(10, 6))
     sns.barplot(x=list(class_counts.keys()), y=list(class_counts.values()))
     plt.title('Class Distribution')
     plt.xlabel('Class')
     plt.ylabel('Number of Images')
-    st.pyplot()
+    st.pyplot(fig)
 
 def initiate_cnn(filters=26,dropout=0.3,reg_strength=0.05):
     NUM_CLASSES = 5
@@ -125,7 +125,7 @@ def show_results(model,history,test_set):
     fig.tight_layout()
 
     # Show the figure
-    plt.show()
+    st.pyplot(fig)
 
     y_pred = model.predict(test_set)
 
@@ -142,11 +142,11 @@ def show_results(model,history,test_set):
     conf_matrix = confusion_matrix(true_labels, predicted_labels, labels=range(len(class_names)))
     
     # Display the confusion matrix with class names
-    print("Confusion Matrix:")
-    print(conf_matrix)
+    st.title("Confusion Matrix:")
+    st.title(conf_matrix)
     
     # Display a heatmap of the confusion matrix
-    plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    fig = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
@@ -157,11 +157,11 @@ def show_results(model,history,test_set):
     plt.xticks(tick_marks, class_names, rotation=45)
     plt.yticks(tick_marks, class_names)
     
-    plt.show()
+    st.pyplot(fig)
     
     # Print classification report
-    print("\nClassification Report:")
-    print(classification_report(true_labels, predicted_labels, target_names=class_names))
+    st.text("Classification Report:")
+    st.text("classification_report(true_labels, predicted_labels, target_names=class_names")
 
 
 
