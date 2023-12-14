@@ -158,7 +158,8 @@ def show_results(model,history,test_set):
     plt.yticks(tick_marks, class_names)
     
     #seaborn if broke
-    st.pyplot(conf_matr) 
+    st.image(conf_matr.get_array(), caption='Confusion Matrix', use_column_width=True)
+
     
     # Print classification report
     st.text("Classification Report:")
