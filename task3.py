@@ -125,7 +125,7 @@ def show_results(model,history,test_set):
     fig.tight_layout()
 
     # Show the figure
-    st.pyplot(plt)
+    st.pyplot(fig)
 
     y_pred = model.predict(test_set)
 
