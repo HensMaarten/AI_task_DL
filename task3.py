@@ -146,7 +146,8 @@ def show_results(model,history,test_set):
     st.text(conf_matrix)
     
     # Display a heatmap of the confusion matrix
-    conf_matr = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    fig_conf_matrix = plt.figure(figsize=(8, 6))
+    sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
@@ -158,8 +159,7 @@ def show_results(model,history,test_set):
     plt.yticks(tick_marks, class_names)
     
     #seaborn if broke
-    st.image(conf_matr.get_array(), caption='Confusion Matrix', use_column_width=True)
-
+    st.pyplot(fig_conf_matrix) 
     
     # Print classification report
     st.text("Classification Report:")
