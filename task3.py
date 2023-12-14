@@ -20,11 +20,11 @@ def display_images(class_path, num_images=3):
     for i, img_name in enumerate(images, start=1):
         img_path = os.path.join(class_path, img_name)
         img = Image.open(img_path)
-        fig = plt.subplot(1, num_images, i)
+        plt.subplot(1, num_images, i)
         plt.imshow(img)
         plt.title(f"Image {i} of {class_path[8:]}")
         plt.axis('off')
-    st.pyplot(fig)
+    st.pyplot(plt)
 
 # Function to perform EDA on the dataset
 def perform_eda(dataset_path):
@@ -39,12 +39,12 @@ def perform_eda(dataset_path):
 
 
     # Visualize class distribution
-    fig = plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6))
     sns.barplot(x=list(class_counts.keys()), y=list(class_counts.values()))
     plt.title('Class Distribution')
     plt.xlabel('Class')
     plt.ylabel('Number of Images')
-    st.pyplot(fig)
+    st.pyplot(plt)
 
 def initiate_cnn(filters=26,dropout=0.3,reg_strength=0.05):
     NUM_CLASSES = 5
@@ -103,7 +103,7 @@ def train_network(model,amnt_epochs=25):
 
 def show_results(model,history,test_set):
     # Create a figure and a grid of subplots with a single call
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
+    (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
 
     # Plot the loss curves on the first subplot
     ax1.plot(history.history['loss'], label='training loss')
@@ -125,7 +125,7 @@ def show_results(model,history,test_set):
     fig.tight_layout()
 
     # Show the figure
-    st.pyplot(fig)
+    st.pyplot(plt)
 
     y_pred = model.predict(test_set)
 
@@ -146,7 +146,7 @@ def show_results(model,history,test_set):
     st.title(conf_matrix)
     
     # Display a heatmap of the confusion matrix
-    fig = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
@@ -157,7 +157,8 @@ def show_results(model,history,test_set):
     plt.xticks(tick_marks, class_names, rotation=45)
     plt.yticks(tick_marks, class_names)
     
-    # st.pyplot(fig) seaborn if broke
+    # seaborn if broke
+    st.pyplot(plt) 
     
     # Print classification report
     st.text("Classification Report:")
