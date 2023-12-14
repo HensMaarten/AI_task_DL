@@ -149,7 +149,7 @@ def show_results(model,history,test_set):
     
     plt.close()
 
-    plt.subplots(figsize=(8, 6))
+    plt.subplots(figsize=(10, 8))
     # Display a heatmap of the confusion matrix
     plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
