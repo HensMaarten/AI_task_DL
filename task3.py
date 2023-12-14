@@ -25,6 +25,7 @@ def display_images(class_path, num_images=3):
         plt.title(f"Image {i} of {class_path[8:]}")
         plt.axis('off')
     st.pyplot(plt)
+    plt.close()
 
 # Function to perform EDA on the dataset
 def perform_eda(dataset_path):
@@ -45,6 +46,7 @@ def perform_eda(dataset_path):
     plt.xlabel('Class')
     plt.ylabel('Number of Images')
     st.pyplot(plt)
+    plt.close()
 
 def initiate_cnn(epochs=25,filters=26,dropout=0.3,reg_strength=0.05):
     NUM_CLASSES = 5
@@ -148,7 +150,7 @@ def show_results(model,history,test_set):
     plt.close()
 
     # Display a heatmap of the confusion matrix
-    conf_matr = plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Labels')
